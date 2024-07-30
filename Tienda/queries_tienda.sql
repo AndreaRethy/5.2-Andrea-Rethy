@@ -211,20 +211,20 @@ fabricante.*, producto.*
 FROM fabricante
 LEFT JOIN producto ON fabricante.codigo = producto.codigo_fabricante;
 
-/* 35. Returns a list showing only those manufacturers that do not have any associated products. */
+/* 35. Return a list showing only those manufacturers that do not have any associated products. */
 SELECT 
 fabricante.*, producto.*
 FROM fabricante
 LEFT JOIN producto ON fabricante.codigo = producto.codigo_fabricante
 WHERE producto.nombre IS NULL;
 
-/* 36. Returns all products from the manufacturer Lenovo. (Without using INNER JOIN). */
+/* 36. Return all products from the manufacturer Lenovo. (Without using INNER JOIN). */
 SELECT
 *
 FROM producto
 WHERE codigo_fabricante = (SELECT codigo FROM fabricante WHERE nombre = 'Lenovo');
 
-/* Returns all data for products that have the same price as the most expensive product from the manufacturer Lenovo. (Without using INNER JOIN). */
+/* 37. Return all data for products that have the same price as the most expensive product from the manufacturer Lenovo. (Without using INNER JOIN). */
 /*
 SELECT
 *
