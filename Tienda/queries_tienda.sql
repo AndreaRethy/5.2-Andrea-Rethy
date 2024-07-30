@@ -4,11 +4,20 @@ USE tienda;
 SELECT nombre FROM producto;
 
 /* 2. List the names and prices of all the products in the product table. */
+SELECT nombre, precio FROM producto;
+
+/* 3. List all columns of the product table. */
+SELECT * FROM producto;
+
+/* 4. List the name of the products, the price in euros and the price in US dollars (USD). Change: 1 EUR = 1.08 USD */
+SELECT 
+nombre, 
+precio as precio_EUR,
+precio * 1.08 as precio_USD 
+FROM producto;
+
 
 /* 
-Llista els noms i els preus de tots els productes de la taula producto.
-Llista totes les columnes de la taula producto.
-Llista el nom dels productes, el preu en euros i el preu en dòlars estatunidencs (USD).
 Llista el nom dels productes, el preu en euros i el preu en dòlars estatunidencs (USD). Utilitza els següents àlies per a les columnes: nom de producto, euros, dòlars.
 Llista els noms i els preus de tots els productes de la taula producto, convertint els noms a majúscula.
 Llista els noms i els preus de tots els productes de la taula producto, convertint els noms a minúscula.
