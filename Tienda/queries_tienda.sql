@@ -16,11 +16,27 @@ precio as precio_EUR,
 precio * 1.08 as precio_USD 
 FROM producto;
 
+/* 5. List the name of the products, the price in euros and the price in US dollars (USD). Use the following aliases for the columns: product name, euros, dollars. */
+SELECT 
+nombre as `product name`, 
+precio as euros,
+precio * 1.08 as dollars 
+FROM producto;
+
+/* 6. List the names and prices of all products in the product table, converting the names to uppercase. */
+SELECT 
+UPPER(nombre) as nombre, 
+precio
+FROM producto;
+
+/* 7. List the names and prices of all products in the product table, converting the names to lowercase. */
+SELECT 
+LOWER(nombre) as nombre, 
+precio
+FROM producto;
+
 
 /* 
-Llista el nom dels productes, el preu en euros i el preu en dòlars estatunidencs (USD). Utilitza els següents àlies per a les columnes: nom de producto, euros, dòlars.
-Llista els noms i els preus de tots els productes de la taula producto, convertint els noms a majúscula.
-Llista els noms i els preus de tots els productes de la taula producto, convertint els noms a minúscula.
 Llista el nom de tots els fabricants en una columna, i en una altra columna obtingui en majúscules els dos primers caràcters del nom del fabricant.
 Llista els noms i els preus de tots els productes de la taula producto, arrodonint el valor del preu.
 Llista els noms i els preus de tots els productes de la taula producto, truncant el valor del preu per a mostrar-lo sense cap xifra decimal.
