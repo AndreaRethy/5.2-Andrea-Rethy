@@ -89,10 +89,25 @@ codigo, nombre
 FROM fabricante
 ORDER BY codigo LIMIT 5;
 
+/* 17. Return a list with 2 rows starting from the fourth row of the manufacturer table. The fourth row must also be included in the answer. */
+SELECT
+codigo, nombre
+FROM fabricante
+WHERE codigo BETWEEN 4 AND 5;
+
+/* 18. List the cheapest product name and price. (Use only the ORDER BY and LIMIT clauses). NOTE: do not use MIN(price) here, it would need GROUP BY. */
+SELECT
+nombre, precio
+FROM producto
+ORDER BY precio ASC LIMIT 1;
+
+/* 19. List the most expensive product name and price. (Use only the ORDER BY and LIMIT clauses). NOTE: do not use MAX(price) here, it would need GROUP BY. */
+SELECT
+nombre, precio
+FROM producto
+ORDER BY precio DESC LIMIT 1;
+
 /* 
-Retorna una llista amb 2 files a partir de la quarta fila de la taula fabricante. La quarta fila també s'ha d'incloure en la resposta.
-Llista el nom i el preu del producte més barat. (Utilitza solament les clàusules ORDER BY i LIMIT). NOTA: Aquí no podria usar MIN(preu), necessitaria GROUP BY.
-Llista el nom i el preu del producte més car. (Utilitza solament les clàusules ORDER BY i LIMIT). NOTA: Aquí no podria usar MAX(preu), necessitaria GROUP BY.
 Llista el nom de tots els productes del fabricant el codi de fabricant del qual és igual a 2.
 Retorna una llista amb el nom del producte, preu i nom de fabricant de tots els productes de la base de dades.
 Retorna una llista amb el nom del producte, preu i nom de fabricant de tots els productes de la base de dades. Ordena el resultat pel nom del fabricant, per ordre alfabètic.
