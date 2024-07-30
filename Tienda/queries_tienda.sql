@@ -107,10 +107,26 @@ nombre, precio
 FROM producto
 ORDER BY precio DESC LIMIT 1;
 
+/* 20. List the name of all products from the manufacturer whose manufacturer code is equal to 2. */
+SELECT
+nombre
+FROM producto
+WHERE codigo_fabricante = 2;
+
+/* 21. Return a list with the product name, price, and manufacturer name of all products in the database. */
+SELECT
+producto.nombre, producto.precio, fabricante.nombre as fabricante
+FROM producto
+INNER JOIN fabricante ON fabricante.codigo = producto.codigo_fabricante;
+
+/* 22. Return a list with the product name, price, and manufacturer name of all products in the database. Sort the result by manufacturer name, in alphabetical order. */
+SELECT
+producto.nombre, producto.precio, fabricante.nombre as fabricante
+FROM producto
+INNER JOIN fabricante ON fabricante.codigo = producto.codigo_fabricante
+ORDER BY fabricante.nombre;
+
 /* 
-Llista el nom de tots els productes del fabricant el codi de fabricant del qual és igual a 2.
-Retorna una llista amb el nom del producte, preu i nom de fabricant de tots els productes de la base de dades.
-Retorna una llista amb el nom del producte, preu i nom de fabricant de tots els productes de la base de dades. Ordena el resultat pel nom del fabricant, per ordre alfabètic.
 Retorna una llista amb el codi del producte, nom del producte, codi del fabricador i nom del fabricador, de tots els productes de la base de dades.
 Retorna el nom del producte, el seu preu i el nom del seu fabricant, del producte més barat.
 Retorna el nom del producte, el seu preu i el nom del seu fabricant, del producte més car.
