@@ -53,14 +53,43 @@ nombre,
 TRUNCATE(precio, 0)
 FROM producto;
 
+/* 11. List the code of the manufacturers that have products in the product table. */
+SELECT 
+fabricante.codigo
+FROM producto
+INNER JOIN fabricante ON fabricante.codigo = producto.codigo_fabricante;
+
+/* 12. List the code of the manufacturers that have products in the product table, eliminating the codes that appear repeatedly. */
+SELECT 
+DISTINCT(fabricante.codigo)
+FROM producto
+INNER JOIN fabricante ON fabricante.codigo = producto.codigo_fabricante;
+
+/* 13. List manufacturer names in ascending order. */
+SELECT
+nombre
+FROM fabricante
+ORDER BY nombre ASC;
+
+/* 14. List manufacturer names in descending order. */
+SELECT
+nombre
+FROM fabricante
+ORDER BY nombre DESC;
+
+/* 15. Lists product names sorted first by name in ascending order and second by price in descending order. */
+SELECT
+nombre, precio
+FROM producto
+ORDER BY nombre ASC, precio DESC;
+
+/* 16. Return a list with the first 5 rows of the manufacturer table. */
+SELECT
+codigo, nombre
+FROM fabricante
+ORDER BY codigo LIMIT 5;
+
 /* 
-Llista els noms i els preus de tots els productes de la taula producto, truncant el valor del preu per a mostrar-lo sense cap xifra decimal.
-Llista el codi dels fabricants que tenen productes en la taula producto.
-Llista el codi dels fabricants que tenen productes en la taula producto, eliminant els codis que apareixen repetits.
-Llista els noms dels fabricants ordenats de manera ascendent.
-Llista els noms dels fabricants ordenats de manera descendent.
-Llista els noms dels productes ordenats, en primer lloc, pel nom de manera ascendent i, en segon lloc, pel preu de manera descendent.
-Retorna una llista amb les 5 primeres files de la taula fabricante.
 Retorna una llista amb 2 files a partir de la quarta fila de la taula fabricante. La quarta fila també s'ha d'incloure en la resposta.
 Llista el nom i el preu del producte més barat. (Utilitza solament les clàusules ORDER BY i LIMIT). NOTA: Aquí no podria usar MIN(preu), necessitaria GROUP BY.
 Llista el nom i el preu del producte més car. (Utilitza solament les clàusules ORDER BY i LIMIT). NOTA: Aquí no podria usar MAX(preu), necessitaria GROUP BY.
