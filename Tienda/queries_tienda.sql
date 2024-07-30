@@ -126,11 +126,46 @@ FROM producto
 INNER JOIN fabricante ON fabricante.codigo = producto.codigo_fabricante
 ORDER BY fabricante.nombre;
 
+/* 23. Return a list with the product code, product name, manufacturer code, and manufacturer name of all products in the database. */
+SELECT
+producto.codigo as product_code,
+producto.nombre as product_name,
+fabricante.codigo as manufacturer_code,
+fabricante.nombre as manufacturer_name
+FROM producto
+INNER JOIN fabricante ON fabricante.codigo = producto.codigo_fabricante;
+
+/* 24. Return the name of the product, its price and the name of its manufacturer, of the cheapest product. */
+SELECT
+producto.nombre, producto.precio, fabricante.nombre as fabricante
+FROM producto
+INNER JOIN fabricante ON fabricante.codigo = producto.codigo_fabricante
+ORDER BY precio ASC LIMIT 1;
+
+/* 25. Return the name of the product, its price and the name of its manufacturer, of the most expensive product. */
+SELECT
+producto.nombre, producto.precio, fabricante.nombre as fabricante
+FROM producto
+INNER JOIN fabricante ON fabricante.codigo = producto.codigo_fabricante
+ORDER BY precio DESC LIMIT 1;
+
+/* 26. Return a list of all products from manufacturer Lenovo. */
+SELECT
+producto.*
+FROM producto
+INNER JOIN fabricante ON fabricante.codigo = producto.codigo_fabricante
+WHERE fabricante.nombre = 'Lenovo';
+
+/* 27. Returns a list of all products from manufacturer Crucial that have a price greater than €200. */
+SELECT
+producto.*
+FROM producto
+INNER JOIN fabricante ON fabricante.codigo = producto.codigo_fabricante
+WHERE fabricante.nombre = 'Crucial'
+ORDER BY producto.precio DESC LIMIT 1;
+
+
 /* 
-Retorna una llista amb el codi del producte, nom del producte, codi del fabricador i nom del fabricador, de tots els productes de la base de dades.
-Retorna el nom del producte, el seu preu i el nom del seu fabricant, del producte més barat.
-Retorna el nom del producte, el seu preu i el nom del seu fabricant, del producte més car.
-Retorna una llista de tots els productes del fabricant Lenovo.
 Retorna una llista de tots els productes del fabricant Crucial que tinguin un preu major que 200 €.
 Retorna un llistat amb tots els productes dels fabricants Asus, Hewlett-Packard y Seagate. Sense utilitzar l'operador IN.
 Retorna un llistat amb tots els productes dels fabricants Asus, Hewlett-Packard y Seagate. Fent servir l'operador IN.
