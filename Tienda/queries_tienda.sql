@@ -156,20 +156,42 @@ FROM producto
 INNER JOIN fabricante ON fabricante.codigo = producto.codigo_fabricante
 WHERE fabricante.nombre = 'Lenovo';
 
-/* 27. Returns a list of all products from manufacturer Crucial that have a price greater than €200. */
+/* 27. Return a list of all products from manufacturer Crucial that have a price greater than €200. */
 SELECT
 producto.*
 FROM producto
 INNER JOIN fabricante ON fabricante.codigo = producto.codigo_fabricante
 WHERE fabricante.nombre = 'Crucial' AND producto.precio > 200;
 
+/* 28. Return a list with all the products of the manufacturers Asus, Hewlett-Packard and Seagate. Without using the IN operator. */
+SELECT
+producto.*
+FROM producto
+INNER JOIN fabricante ON fabricante.codigo = producto.codigo_fabricante
+WHERE fabricante.nombre = 'Asus' OR fabricante.nombre = 'Hewlett-Packard' OR fabricante.nombre = 'Seagate';
+
+/* 29. Return a list with all the products of the manufacturers Asus, Hewlett-Packard and Seagate. Using the IN operator. */
+SELECT
+producto.*
+FROM producto
+INNER JOIN fabricante ON fabricante.codigo = producto.codigo_fabricante
+WHERE fabricante.nombre IN ('Asus', 'Hewlett-Packard', 'Seagate');
+
+/* 30. Return a list with the name and price of all products from manufacturers whose name ends with the vowel e. */
+SELECT
+producto.nombre, producto.precio
+FROM producto
+INNER JOIN fabricante ON fabricante.codigo = producto.codigo_fabricante
+WHERE SUBSTR(fabricante.nombre, LENGTH(fabricante.nombre), 1) = 'e';
+
+/* 31. Return a list with the name and price of all products whose manufacturer name contains the character w in their name. */
+SELECT
+producto.nombre, producto.precio, fabricante.nombre
+FROM producto
+INNER JOIN fabricante ON fabricante.codigo = producto.codigo_fabricante
+WHERE LOCATE('w', fabricante.nombre) != 0;
 
 /* 
-Retorna una llista de tots els productes del fabricant Crucial que tinguin un preu major que 200 €.
-Retorna un llistat amb tots els productes dels fabricants Asus, Hewlett-Packard y Seagate. Sense utilitzar l'operador IN.
-Retorna un llistat amb tots els productes dels fabricants Asus, Hewlett-Packard y Seagate. Fent servir l'operador IN.
-Retorna un llistat amb el nom i el preu de tots els productes dels fabricants el nom dels quals acabi per la vocal e.
-Retorna un llistat amb el nom i el preu de tots els productes el nom de fabricant dels quals contingui el caràcter w en el seu nom.
 Retorna un llistat amb el nom de producte, preu i nom de fabricant, de tots els productes que tinguin un preu major o igual a 180 €. Ordena el resultat, en primer lloc, pel preu (en ordre descendent) i, en segon lloc, pel nom (en ordre ascendent).
 Retorna un llistat amb el codi i el nom de fabricant, solament d'aquells fabricants que tenen productes associats en la base de dades.
 Retorna un llistat de tots els fabricants que existeixen en la base de dades, juntament amb els productes que té cadascun d'ells. El llistat haurà de mostrar també aquells fabricants que no tenen productes associats.
