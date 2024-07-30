@@ -186,18 +186,53 @@ WHERE SUBSTR(fabricante.nombre, LENGTH(fabricante.nombre), 1) = 'e';
 
 /* 31. Return a list with the name and price of all products whose manufacturer name contains the character w in their name. */
 SELECT
-producto.nombre, producto.precio, fabricante.nombre
+producto.nombre, producto.precio
 FROM producto
 INNER JOIN fabricante ON fabricante.codigo = producto.codigo_fabricante
 WHERE LOCATE('w', fabricante.nombre) != 0;
 
+/* 32. Return a list with the product name, price and manufacturer name, of all products that have a price greater than or equal to €180. Sort the result first by price (in descending order) and second by name (in ascending order). */
+SELECT
+producto.nombre, producto.precio, fabricante.nombre
+FROM producto
+INNER JOIN fabricante ON fabricante.codigo = producto.codigo_fabricante
+WHERE producto.precio >= 180
+ORDER BY producto.precio DESC, producto.nombre ASC;
+
+/* 33. Return a list with the manufacturer's code and name, only of those manufacturers that have associated products in the database. */
+SELECT 
+DISTINCT(fabricante.codigo), fabricante.nombre
+FROM producto
+INNER JOIN fabricante ON fabricante.codigo = producto.codigo_fabricante;
+
+/* 34. Return a list of all the manufacturers that exist in the database, along with the products that each of them has. The list must also show those manufacturers that do not have associated products. */
+SELECT 
+fabricante.*, producto.*
+FROM fabricante
+LEFT JOIN producto ON fabricante.codigo = producto.codigo_fabricante;
+
+/* 35. Returns a list showing only those manufacturers that do not have any associated products. */
+SELECT 
+fabricante.*, producto.*
+FROM fabricante
+LEFT JOIN producto ON fabricante.codigo = producto.codigo_fabricante
+WHERE producto.nombre IS NULL;
+
+/* 36. Returns all products from the manufacturer Lenovo. (Without using INNER JOIN). */
+SELECT
+*
+FROM producto
+WHERE codigo_fabricante = (SELECT codigo FROM fabricante WHERE nombre = 'Lenovo');
+
+/* Returns all data for products that have the same price as the most expensive product from the manufacturer Lenovo. (Without using INNER JOIN). */
+/*
+SELECT
+*
+FROM producto
+WHERE precio = codigo_fabricante = (SELECT codigo FROM fabricante WHERE nombre = 'Lenovo');
+*/
+
 /* 
-Retorna un llistat amb el nom de producte, preu i nom de fabricant, de tots els productes que tinguin un preu major o igual a 180 €. Ordena el resultat, en primer lloc, pel preu (en ordre descendent) i, en segon lloc, pel nom (en ordre ascendent).
-Retorna un llistat amb el codi i el nom de fabricant, solament d'aquells fabricants que tenen productes associats en la base de dades.
-Retorna un llistat de tots els fabricants que existeixen en la base de dades, juntament amb els productes que té cadascun d'ells. El llistat haurà de mostrar també aquells fabricants que no tenen productes associats.
-Retorna un llistat on només apareguin aquells fabricants que no tenen cap producte associat.
-Retorna tots els productes del fabricador Lenovo. (Sense utilitzar INNER JOIN).
-Retorna totes les dades dels productes que tenen el mateix preu que el producte més car del fabricant Lenovo. (Sense usar INNER JOIN).
 Llista el nom del producte més car del fabricant Lenovo.
 Llista el nom del producte més barat del fabricant Hewlett-Packard.
 Retorna tots els productes de la base de dades que tenen un preu major o igual al producte més car del fabricant Lenovo.
