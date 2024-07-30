@@ -35,10 +35,25 @@ LOWER(nombre) as nombre,
 precio
 FROM producto;
 
+/* 8. List the name of all manufacturers in one column, and in another column capitalize the first two characters of the manufacturer's name. */
+SELECT
+nombre,
+UPPER(SUBSTR(nombre, 1, 2)) as short_name
+FROM fabricante;
+
+/* 9. List the names and prices of all products in the product table, rounding the price value. */
+SELECT 
+nombre, 
+ROUND(precio, 0)
+FROM producto;
+
+/* 10. Lists the names and prices of all products in the product table, truncating the price value to display it without any decimal places. */
+SELECT 
+nombre, 
+TRUNCATE(precio, 0)
+FROM producto;
 
 /* 
-Llista el nom de tots els fabricants en una columna, i en una altra columna obtingui en majúscules els dos primers caràcters del nom del fabricant.
-Llista els noms i els preus de tots els productes de la taula producto, arrodonint el valor del preu.
 Llista els noms i els preus de tots els productes de la taula producto, truncant el valor del preu per a mostrar-lo sense cap xifra decimal.
 Llista el codi dels fabricants que tenen productes en la taula producto.
 Llista el codi dels fabricants que tenen productes en la taula producto, eliminant els codis que apareixen repetits.
