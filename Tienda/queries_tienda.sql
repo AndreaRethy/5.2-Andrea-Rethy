@@ -161,8 +161,7 @@ SELECT
 producto.*
 FROM producto
 INNER JOIN fabricante ON fabricante.codigo = producto.codigo_fabricante
-WHERE fabricante.nombre = 'Crucial'
-ORDER BY producto.precio DESC LIMIT 1;
+WHERE fabricante.nombre = 'Crucial' AND producto.precio > 200;
 
 
 /* 
