@@ -225,16 +225,29 @@ FROM producto
 WHERE codigo_fabricante = (SELECT codigo FROM fabricante WHERE nombre = 'Lenovo');
 
 /* 37. Return all data for products that have the same price as the most expensive product from the manufacturer Lenovo. (Without using INNER JOIN). */
-/*
 SELECT
 *
 FROM producto
-WHERE precio = codigo_fabricante = (SELECT codigo FROM fabricante WHERE nombre = 'Lenovo');
-*/
+WHERE precio IN (
+SELECT
+MAX(precio)
+FROM producto
+WHERE codigo_fabricante = (SELECT codigo FROM fabricante WHERE nombre = 'Lenovo'));
 
-/* 
-Llista el nom del producte més car del fabricant Lenovo.
-Llista el nom del producte més barat del fabricant Hewlett-Packard.
-Retorna tots els productes de la base de dades que tenen un preu major o igual al producte més car del fabricant Lenovo.
-41. Llesta tots els productes del fabricant Asus que tenen un preu superior al preu mitjà de tots els seus productes.
- */
+/* 38. List the name of the most expensive product from the manufacturer Lenovo. */
+SELECT
+nombre
+FROM producto
+WHERE codigo_fabricante = (SELECT codigo FROM fabricante WHERE nombre = 'Lenovo')
+ORDER BY precio DESC LIMIT 1;
+
+/* 39. List the cheapest product name from the manufacturer Hewlett-Packard. */
+SELECT
+nombre
+FROM producto
+WHERE codigo_fabricante = (SELECT codigo FROM fabricante WHERE nombre = 'Hewlett-Packard')
+ORDER BY precio ASC LIMIT 1;
+
+/* 40. Returns all products in the database that have a price greater than or equal to the most expensive product from manufacturer Lenovo. */
+
+/* 41. List all products from the manufacturer Asus that are priced higher than the average price of all their products. */
