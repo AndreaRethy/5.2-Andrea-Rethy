@@ -14,9 +14,21 @@ LEFT JOIN profesor ON persona.id = profesor.id_profesor
 WHERE profesor.id_profesor IS NULL AND persona.telefono IS NULL
 ORDER BY persona.apellido1 ASC, persona.apellido2 ASC, persona.nombre ASC;
 
+/* 3. Return the list of students who were born in 1999. */
+SELECT DISTINCT persona.apellido1, persona.apellido2, persona.nombre
+FROM persona
+LEFT JOIN profesor ON persona.id = profesor.id_profesor
+WHERE profesor.id_profesor IS NULL AND LEFT(persona.fecha_nacimiento, 4) = '1999'
+ORDER BY persona.apellido1 ASC, persona.apellido2 ASC, persona.nombre ASC;
+
+/* 4. Return the list of teachers who have not registered their phone number in the database and also their NIF ends in K. */
+SELECT DISTINCT persona.apellido1, persona.apellido2, persona.nombre, persona.id
+FROM persona
+RIGHT JOIN profesor ON persona.id = profesor.id_profesor
+WHERE persona.telefono IS NULL AND RIGHT(persona.nif, 1) = 'K'
+ORDER BY persona.apellido1 ASC, persona.apellido2 ASC, persona.nombre ASC;
+
 /*
-Retorna el llistat dels alumnes que van néixer en 1999.
-Retorna el llistat de professors/es que no han donat d'alta el seu número de telèfon en la base de dades i a més el seu NIF acaba en K.
 Retorna el llistat de les assignatures que s'imparteixen en el primer quadrimestre, en el tercer curs del grau que té l'identificador 7.
 Retorna un llistat dels professors/es juntament amb el nom del departament al qual estan vinculats. El llistat ha de retornar quatre columnes, primer cognom, segon cognom, nom i nom del departament. El resultat estarà ordenat alfabèticament de menor a major pels cognoms i el nom.
 Retorna un llistat amb el nom de les assignatures, any d'inici i any de fi del curs escolar de l'alumne/a amb NIF 26902806M.
