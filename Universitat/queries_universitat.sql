@@ -1,9 +1,10 @@
 USE universidad;
 
 /* 1. Return a list with the first last name, second last name and first name of all the students. The list must be ordered alphabetically from lowest to highest by first last name, second last name and first name. */
-SELECT DISTINCT persona.apellido1, persona.apellido2, persona.nombre
-FROM alumno_se_matricula_asignatura
-LEFT JOIN persona ON alumno_se_matricula_asignatura.id_alumno = persona.id
+SELECT DISTINCT persona.apellido1, persona.apellido2, persona.nombre, persona.id
+FROM persona
+LEFT JOIN profesor ON persona.id = profesor.id_profesor
+WHERE profesor.id_profesor IS NULL
 ORDER BY persona.apellido1 ASC, persona.apellido2 ASC, persona.nombre ASC;
 
 /*
