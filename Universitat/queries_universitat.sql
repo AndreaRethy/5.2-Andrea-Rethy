@@ -1,7 +1,12 @@
+USE universidad;
 
+/* 1. Return a list with the first last name, second last name and first name of all the students. The list must be ordered alphabetically from lowest to highest by first last name, second last name and first name. */
+SELECT DISTINCT persona.apellido1, persona.apellido2, persona.nombre
+FROM alumno_se_matricula_asignatura
+LEFT JOIN persona ON alumno_se_matricula_asignatura.id_alumno = persona.id
+ORDER BY persona.apellido1 ASC, persona.apellido2 ASC, persona.nombre ASC;
 
 /*
-Retorna un llistat amb el primer cognom, segon cognom i el nom de tots els/les alumnes. El llistat haurà d'estar ordenat alfabèticament de menor a major pel primer cognom, segon cognom i nom.
 Esbrina el nom i els dos cognoms dels alumnes que no han donat d'alta el seu número de telèfon en la base de dades.
 Retorna el llistat dels alumnes que van néixer en 1999.
 Retorna el llistat de professors/es que no han donat d'alta el seu número de telèfon en la base de dades i a més el seu NIF acaba en K.
@@ -10,6 +15,8 @@ Retorna un llistat dels professors/es juntament amb el nom del departament al qu
 Retorna un llistat amb el nom de les assignatures, any d'inici i any de fi del curs escolar de l'alumne/a amb NIF 26902806M.
 Retorna un llistat amb el nom de tots els departaments que tenen professors/es que imparteixen alguna assignatura en el Grau en Enginyeria Informàtica (Pla 2015).
 Retorna un llistat amb tots els alumnes que s'han matriculat en alguna assignatura durant el curs escolar 2018/2019.
+
+
 Resol les 6 següents consultes utilitzant les clàusules LEFT JOIN i RIGHT JOIN.
 
 Retorna un llistat amb els noms de tots els professors/es i els departaments que tenen vinculats. El llistat també ha de mostrar aquells professors/es que no tenen cap departament associat. El llistat ha de retornar quatre columnes, nom del departament, primer cognom, segon cognom i nom del professor/a. El resultat estarà ordenat alfabèticament de menor a major pel nom del departament, cognoms i el nom.
@@ -18,6 +25,8 @@ Retorna un llistat amb els departaments que no tenen professors/es associats.
 Retorna un llistat amb els professors/es que no imparteixen cap assignatura.
 Retorna un llistat amb les assignatures que no tenen un professor/a assignat.
 Retorna un llistat amb tots els departaments que no han impartit assignatures en cap curs escolar.
+
+
 Consultes resum:
 
 Retorna el nombre total d'alumnes que hi ha.
