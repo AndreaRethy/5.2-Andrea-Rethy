@@ -1,14 +1,20 @@
 USE universidad;
 
 /* 1. Return a list with the first last name, second last name and first name of all the students. The list must be ordered alphabetically from lowest to highest by first last name, second last name and first name. */
-SELECT DISTINCT persona.apellido1, persona.apellido2, persona.nombre, persona.id
+SELECT DISTINCT persona.apellido1, persona.apellido2, persona.nombre
 FROM persona
 LEFT JOIN profesor ON persona.id = profesor.id_profesor
 WHERE profesor.id_profesor IS NULL
 ORDER BY persona.apellido1 ASC, persona.apellido2 ASC, persona.nombre ASC;
 
+/* 2. Find out the first and last names of students who have not registered their phone number in the database. */
+SELECT DISTINCT persona.apellido1, persona.apellido2, persona.nombre
+FROM persona
+LEFT JOIN profesor ON persona.id = profesor.id_profesor
+WHERE profesor.id_profesor IS NULL AND persona.telefono IS NULL
+ORDER BY persona.apellido1 ASC, persona.apellido2 ASC, persona.nombre ASC;
+
 /*
-Esbrina el nom i els dos cognoms dels alumnes que no han donat d'alta el seu número de telèfon en la base de dades.
 Retorna el llistat dels alumnes que van néixer en 1999.
 Retorna el llistat de professors/es que no han donat d'alta el seu número de telèfon en la base de dades i a més el seu NIF acaba en K.
 Retorna el llistat de les assignatures que s'imparteixen en el primer quadrimestre, en el tercer curs del grau que té l'identificador 7.
