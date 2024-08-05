@@ -36,13 +36,21 @@ WHERE cuatrimestre = 1 AND curso = 3 AND id_grado = 7;
 
 /* 6. Return a list of professors along with the name of the department to which they are linked. The listing should return four columns, first last name, second last name, first name and department name. The result will be sorted alphabetically from lowest to highest by last name and first name.
 	Retorna un llistat dels professors/es juntament amb el nom del departament al qual estan vinculats. El llistat ha de retornar quatre columnes, primer cognom, segon cognom, nom i nom del departament. El resultat estarà ordenat alfabèticament de menor a major pels cognoms i el nom. */
-SELECT persona.apellido1, persona.apellido2, persona.nombre, departamento.nombre as departamento
+SELECT persona.apellido1, persona.apellido2, persona.nombre, departamento.nombre AS departamento
 FROM profesor
 INNER JOIN persona ON profesor.id_profesor = persona.id
 INNER JOIN departamento ON profesor.id_departamento = departamento.id;
 
+/* 7. Return a list with the name of the subjects, start year and end year of the student's school year with NIF 26902806M.
+	Retorna un llistat amb el nom de les assignatures, any d'inici i any de fi del curs escolar de l'alumne/a amb NIF 26902806M. */
+SELECT asignatura.nombre, curso_escolar.anyo_inicio, curso_escolar.anyo_fin
+FROM alumno_se_matricula_asignatura
+INNER JOIN persona ON alumno_se_matricula_asignatura.id_alumno = persona.id
+INNER JOIN asignatura ON alumno_se_matricula_asignatura.id_asignatura = asignatura.id
+INNER JOIN curso_escolar ON alumno_se_matricula_asignatura.id_curso_escolar = curso_escolar.id
+WHERE persona.nif = '26902806M';
+
 /*
-Retorna un llistat amb el nom de les assignatures, any d'inici i any de fi del curs escolar de l'alumne/a amb NIF 26902806M.
 Retorna un llistat amb el nom de tots els departaments que tenen professors/es que imparteixen alguna assignatura en el Grau en Enginyeria Informàtica (Pla 2015).
 Retorna un llistat amb tots els alumnes que s'han matriculat en alguna assignatura durant el curs escolar 2018/2019.
 
