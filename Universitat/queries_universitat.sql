@@ -28,8 +28,13 @@ RIGHT JOIN profesor ON persona.id = profesor.id_profesor
 WHERE persona.telefono IS NULL AND RIGHT(persona.nif, 1) = 'K'
 ORDER BY persona.apellido1 ASC, persona.apellido2 ASC, persona.nombre ASC;
 
+/* 5. Return the list of subjects that are taught in the first semester, in the third year of the degree that has the identifier 7.
+	Retorna el llistat de les assignatures que s'imparteixen en el primer quadrimestre, en el tercer curs del grau que té l'identificador 7. */
+SELECT *
+FROM asignatura
+WHERE cuatrimestre = 1 AND curso = 3 AND id_grado = 7;
+
 /*
-Retorna el llistat de les assignatures que s'imparteixen en el primer quadrimestre, en el tercer curs del grau que té l'identificador 7.
 Retorna un llistat dels professors/es juntament amb el nom del departament al qual estan vinculats. El llistat ha de retornar quatre columnes, primer cognom, segon cognom, nom i nom del departament. El resultat estarà ordenat alfabèticament de menor a major pels cognoms i el nom.
 Retorna un llistat amb el nom de les assignatures, any d'inici i any de fi del curs escolar de l'alumne/a amb NIF 26902806M.
 Retorna un llistat amb el nom de tots els departaments que tenen professors/es que imparteixen alguna assignatura en el Grau en Enginyeria Informàtica (Pla 2015).
