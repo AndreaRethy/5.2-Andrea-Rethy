@@ -50,11 +50,23 @@ INNER JOIN asignatura ON alumno_se_matricula_asignatura.id_asignatura = asignatu
 INNER JOIN curso_escolar ON alumno_se_matricula_asignatura.id_curso_escolar = curso_escolar.id
 WHERE persona.nif = '26902806M';
 
+/* 8. Return a list with the name of all the departments that have professors who teach a subject in the Degree in Computer Engineering (Plan 2015).
+	Retorna un llistat amb el nom de tots els departaments que tenen professors/es que imparteixen alguna assignatura en el Grau en Enginyeria Informàtica (Pla 2015). */
+/* SELECT *
+FROM departamento
+INNER JOIN profesor ON departamento.id = profesor.id_departamento */
+
+/* 9. Return a list of all students who have enrolled in a subject during the 2018/2019 school year
+	Retorna un llistat amb tots els alumnes que s'han matriculat en alguna assignatura durant el curs escolar 2018/2019. */
+SELECT DISTINCT persona.nombre
+FROM alumno_se_matricula_asignatura
+INNER JOIN persona ON alumno_se_matricula_asignatura.id_alumno = persona.id
+INNER JOIN asignatura ON alumno_se_matricula_asignatura.id_asignatura = asignatura.id
+INNER JOIN curso_escolar ON alumno_se_matricula_asignatura.id_curso_escolar = curso_escolar.id
+WHERE curso_escolar.anyo_inicio = 2018 AND curso_escolar.anyo_fin = 2019;
+
+
 /*
-Retorna un llistat amb el nom de tots els departaments que tenen professors/es que imparteixen alguna assignatura en el Grau en Enginyeria Informàtica (Pla 2015).
-Retorna un llistat amb tots els alumnes que s'han matriculat en alguna assignatura durant el curs escolar 2018/2019.
-
-
 Resol les 6 següents consultes utilitzant les clàusules LEFT JOIN i RIGHT JOIN.
 
 Retorna un llistat amb els noms de tots els professors/es i els departaments que tenen vinculats. El llistat també ha de mostrar aquells professors/es que no tenen cap departament associat. El llistat ha de retornar quatre columnes, nom del departament, primer cognom, segon cognom i nom del professor/a. El resultat estarà ordenat alfabèticament de menor a major pel nom del departament, cognoms i el nom.
