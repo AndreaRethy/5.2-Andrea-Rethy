@@ -65,11 +65,17 @@ INNER JOIN asignatura ON alumno_se_matricula_asignatura.id_asignatura = asignatu
 INNER JOIN curso_escolar ON alumno_se_matricula_asignatura.id_curso_escolar = curso_escolar.id
 WHERE curso_escolar.anyo_inicio = 2018 AND curso_escolar.anyo_fin = 2019;
 
+/* 10. Return a list with the names of all the professors and the departments they are linked to. The list must also show those professors who do not have any associated department. The listing must return four columns, department name, first last name, second last name and teacher's name. The result will be sorted alphabetically from lowest to highest by department name, last name and first name.
+	Retorna un llistat amb els noms de tots els professors/es i els departaments que tenen vinculats. El llistat també ha de mostrar aquells professors/es que no tenen cap departament associat. El llistat ha de retornar quatre columnes, nom del departament, primer cognom, segon cognom i nom del professor/a. El resultat estarà ordenat alfabèticament de menor a major pel nom del departament, cognoms i el nom. */
+SELECT departamento.nombre, persona.apellido1, persona.apellido2, persona.nombre
+FROM profesor
+LEFT JOIN departamento ON profesor.id_departamento = departamento.id
+LEFT JOIN persona ON profesor.id_profesor = persona.id
+ORDER BY departamento.nombre ASC, persona.apellido1 ASC, persona.apellido2 ASC, persona.nombre ASC;
 
 /*
 Resol les 6 següents consultes utilitzant les clàusules LEFT JOIN i RIGHT JOIN.
 
-Retorna un llistat amb els noms de tots els professors/es i els departaments que tenen vinculats. El llistat també ha de mostrar aquells professors/es que no tenen cap departament associat. El llistat ha de retornar quatre columnes, nom del departament, primer cognom, segon cognom i nom del professor/a. El resultat estarà ordenat alfabèticament de menor a major pel nom del departament, cognoms i el nom.
 Retorna un llistat amb els professors/es que no estan associats a un departament.
 Retorna un llistat amb els departaments que no tenen professors/es associats.
 Retorna un llistat amb els professors/es que no imparteixen cap assignatura.
