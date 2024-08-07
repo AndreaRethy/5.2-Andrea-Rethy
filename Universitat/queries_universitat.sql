@@ -75,17 +75,23 @@ ORDER BY departamento.nombre ASC, persona.apellido1 ASC, persona.apellido2 ASC, 
 
 /* 11. Return a list of professors who are not associated with a department.
 	Retorna un llistat amb els professors/es que no estan associats a un departament. */
-SELECT departamento.nombre, persona.apellido1, persona.apellido2, persona.nombre
+SELECT persona.apellido1, persona.apellido2, persona.nombre
 FROM profesor
 LEFT JOIN departamento ON profesor.id_departamento = departamento.id
 LEFT JOIN persona ON profesor.id_profesor = persona.id
 WHERE profesor.id_departamento IS NULL
-ORDER BY departamento.nombre ASC, persona.apellido1 ASC, persona.apellido2 ASC, persona.nombre ASC;
+ORDER BY persona.apellido1 ASC, persona.apellido2 ASC, persona.nombre ASC;
+
+/* 12. Returns a list of departments that do not have associate professors.
+	Retorna un llistat amb els departaments que no tenen professors/es associats. */
+SELECT *
+FROM departamento
+LEFT JOIN profesor ON departamento.id = profesor.id_departamento
+WHERE profesor.id_departamento IS NULL;
 
 /*
 Resol les 6 següents consultes utilitzant les clàusules LEFT JOIN i RIGHT JOIN.
 
-Retorna un llistat amb els departaments que no tenen professors/es associats.
 Retorna un llistat amb els professors/es que no imparteixen cap assignatura.
 Retorna un llistat amb les assignatures que no tenen un professor/a assignat.
 Retorna un llistat amb tots els departaments que no han impartit assignatures en cap curs escolar.
