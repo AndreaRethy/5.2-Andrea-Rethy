@@ -122,10 +122,16 @@ SELECT COUNT(*)
 FROM persona
 WHERE tipo = 'alumno' AND LEFT(fecha_nacimiento, 4) = 1999;
 
+/* 18. Calculate how many teachers there are in each department. The result should only show two columns, one with the name of the department and another with the number of professors in that department. The result must only include the departments that have associate professors and must be ordered from highest to lowest by the number of professors.
+	Calcula quants professors/es hi ha en cada departament. El resultat només ha de mostrar dues columnes, una amb el nom del departament i una altra amb el nombre de professors/es que hi ha en aquest departament. El resultat només ha d'incloure els departaments que tenen professors/es associats i haurà d'estar ordenat de major a menor pel nombre de professors/es. */
+SELECT departamento.nombre AS departamento, COUNT(profesor.id_profesor) AS 'Num. Prof.'
+FROM profesor
+INNER JOIN departamento ON profesor.id_departamento = departamento.id
+GROUP BY departamento.nombre;
+
 /*
 Consultes resum:
 
-Calcula quants professors/es hi ha en cada departament. El resultat només ha de mostrar dues columnes, una amb el nom del departament i una altra amb el nombre de professors/es que hi ha en aquest departament. El resultat només ha d'incloure els departaments que tenen professors/es associats i haurà d'estar ordenat de major a menor pel nombre de professors/es.
 Retorna un llistat amb tots els departaments i el nombre de professors/es que hi ha en cadascun d'ells. Tingui en compte que poden existir departaments que no tenen professors/es associats. Aquests departaments també han d'aparèixer en el llistat.
 Retorna un llistat amb el nom de tots els graus existents en la base de dades i el nombre d'assignatures que té cadascun. Tingues en compte que poden existir graus que no tenen assignatures associades. Aquests graus també han d'aparèixer en el llistat. El resultat haurà d'estar ordenat de major a menor pel nombre d'assignatures.
 Retorna un llistat amb el nom de tots els graus existents en la base de dades i el nombre d'assignatures que té cadascun, dels graus que tinguin més de 40 assignatures associades.
