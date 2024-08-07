@@ -112,11 +112,19 @@ RIGHT JOIN asignatura ON profesor.id_profesor = asignatura.id_profesor
 RIGHT JOIN departamento ON profesor.id_departamento = departamento.id
 WHERE asignatura.nombre IS NULL; 
 
+/* 16. Returns the total number of students there. */
+SELECT COUNT(*)
+FROM persona
+WHERE tipo = 'alumno';
+
+/* 17. Calculate how many students were born in 1999. */
+SELECT COUNT(*)
+FROM persona
+WHERE tipo = 'alumno' AND LEFT(fecha_nacimiento, 4) = 1999;
+
 /*
 Consultes resum:
 
-Retorna el nombre total d'alumnes que hi ha.
-Calcula quants alumnes van néixer en 1999.
 Calcula quants professors/es hi ha en cada departament. El resultat només ha de mostrar dues columnes, una amb el nom del departament i una altra amb el nombre de professors/es que hi ha en aquest departament. El resultat només ha d'incloure els departaments que tenen professors/es associats i haurà d'estar ordenat de major a menor pel nombre de professors/es.
 Retorna un llistat amb tots els departaments i el nombre de professors/es que hi ha en cadascun d'ells. Tingui en compte que poden existir departaments que no tenen professors/es associats. Aquests departaments també han d'aparèixer en el llistat.
 Retorna un llistat amb el nom de tots els graus existents en la base de dades i el nombre d'assignatures que té cadascun. Tingues en compte que poden existir graus que no tenen assignatures associades. Aquests graus també han d'aparèixer en el llistat. El resultat haurà d'estar ordenat de major a menor pel nombre d'assignatures.
