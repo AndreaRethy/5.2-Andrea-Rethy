@@ -144,10 +144,18 @@ LEFT JOIN asignatura ON grado.id = asignatura.id_grado
 GROUP BY grado.nombre
 ORDER BY COUNT(asignatura.id) DESC;
 
+/* 21. Return a list with the name of all the existing degrees in the database and the number of subjects each one has, of the degrees that have more than 40 associated subjects.
+	Retorna un llistat amb el nom de tots els graus existents en la base de dades i el nombre d'assignatures que té cadascun, dels graus que tinguin més de 40 assignatures associades. */
+SELECT grado.nombre AS grados, COUNT(asignatura.id) AS 'Num. Asign.'
+FROM grado
+LEFT JOIN asignatura ON grado.id = asignatura.id_grado
+GROUP BY grado.nombre
+HAVING COUNT(asignatura.id) > 40
+ORDER BY COUNT(asignatura.id) DESC;
+
 /*
 Consultes resum:
 
-Retorna un llistat amb el nom de tots els graus existents en la base de dades i el nombre d'assignatures que té cadascun, dels graus que tinguin més de 40 assignatures associades.
 Retorna un llistat que mostri el nom dels graus i la suma del nombre total de crèdits que hi ha per a cada tipus d'assignatura. El resultat ha de tenir tres columnes: nom del grau, tipus d'assignatura i la suma dels crèdits de totes les assignatures que hi ha d'aquest tipus.
 Retorna un llistat que mostri quants alumnes s'han matriculat d'alguna assignatura en cadascun dels cursos escolars. El resultat haurà de mostrar dues columnes, una columna amb l'any d'inici del curs escolar i una altra amb el nombre d'alumnes matriculats.
 Retorna un llistat amb el nombre d'assignatures que imparteix cada professor/a. El llistat ha de tenir en compte aquells professors/es que no imparteixen cap assignatura. El resultat mostrarà cinc columnes: id, nom, primer cognom, segon cognom i nombre d'assignatures. El resultat estarà ordenat de major a menor pel nombre d'assignatures.
