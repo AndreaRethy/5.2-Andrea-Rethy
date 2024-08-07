@@ -112,7 +112,7 @@ RIGHT JOIN asignatura ON profesor.id_profesor = asignatura.id_profesor
 RIGHT JOIN departamento ON profesor.id_departamento = departamento.id
 WHERE asignatura.nombre IS NULL; 
 
-/* 16. Returns the total number of students there. */
+/* 16. Return the total number of students there. */
 SELECT COUNT(*)
 FROM persona
 WHERE tipo = 'alumno';
@@ -129,11 +129,24 @@ FROM profesor
 INNER JOIN departamento ON profesor.id_departamento = departamento.id
 GROUP BY departamento.nombre;
 
+/* 19. Return a list with all the departments and the number of professors in each of them. Keep in mind that there may be departments that do not have associate professors. These departments must also appear in the list.
+	Retorna un llistat amb tots els departaments i el nombre de professors/es que hi ha en cadascun d'ells. Tingui en compte que poden existir departaments que no tenen professors/es associats. Aquests departaments també han d'aparèixer en el llistat. */
+SELECT departamento.nombre AS departamento, COUNT(profesor.id_profesor) AS 'Num. Prof.'
+FROM profesor
+RIGHT JOIN departamento ON profesor.id_departamento = departamento.id
+GROUP BY departamento.nombre;
+
+/* 20. Return a list with the name of all the existing degrees in the database and the number of subjects each one has. Note that there may be degrees that do not have associated subjects. These grades must also appear in the listing. The result must be ordered from highest to lowest by the number of subjects.
+	Retorna un llistat amb el nom de tots els graus existents en la base de dades i el nombre d'assignatures que té cadascun. Tingues en compte que poden existir graus que no tenen assignatures associades. Aquests graus també han d'aparèixer en el llistat. El resultat haurà d'estar ordenat de major a menor pel nombre d'assignatures. */
+SELECT grado.nombre AS grados, COUNT(asignatura.id) AS 'Num. Asign.'
+FROM grado
+LEFT JOIN asignatura ON grado.id = asignatura.id_grado
+GROUP BY grado.nombre
+ORDER BY COUNT(asignatura.id) DESC;
+
 /*
 Consultes resum:
 
-Retorna un llistat amb tots els departaments i el nombre de professors/es que hi ha en cadascun d'ells. Tingui en compte que poden existir departaments que no tenen professors/es associats. Aquests departaments també han d'aparèixer en el llistat.
-Retorna un llistat amb el nom de tots els graus existents en la base de dades i el nombre d'assignatures que té cadascun. Tingues en compte que poden existir graus que no tenen assignatures associades. Aquests graus també han d'aparèixer en el llistat. El resultat haurà d'estar ordenat de major a menor pel nombre d'assignatures.
 Retorna un llistat amb el nom de tots els graus existents en la base de dades i el nombre d'assignatures que té cadascun, dels graus que tinguin més de 40 assignatures associades.
 Retorna un llistat que mostri el nom dels graus i la suma del nombre total de crèdits que hi ha per a cada tipus d'assignatura. El resultat ha de tenir tres columnes: nom del grau, tipus d'assignatura i la suma dels crèdits de totes les assignatures que hi ha d'aquest tipus.
 Retorna un llistat que mostri quants alumnes s'han matriculat d'alguna assignatura en cadascun dels cursos escolars. El resultat haurà de mostrar dues columnes, una columna amb l'any d'inici del curs escolar i una altra amb el nombre d'alumnes matriculats.
