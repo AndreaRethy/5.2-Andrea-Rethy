@@ -113,11 +113,6 @@ RIGHT JOIN departamento ON profesor.id_departamento = departamento.id
 WHERE asignatura.nombre IS NULL; 
 
 /*
-Resol les 6 següents consultes utilitzant les clàusules LEFT JOIN i RIGHT JOIN.
-
-
-
-
 Consultes resum:
 
 Retorna el nombre total d'alumnes que hi ha.
