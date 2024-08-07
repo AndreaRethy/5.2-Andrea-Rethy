@@ -52,9 +52,12 @@ WHERE persona.nif = '26902806M';
 
 /* 8. Return a list with the name of all the departments that have professors who teach a subject in the Degree in Computer Engineering (Plan 2015).
 	Retorna un llistat amb el nom de tots els departaments que tenen professors/es que imparteixen alguna assignatura en el Grau en Enginyeria Informàtica (Pla 2015). */
-/* SELECT *
-FROM departamento
-INNER JOIN profesor ON departamento.id = profesor.id_departamento */
+SELECT DISTINCT departamento.nombre
+FROM profesor
+LEFT JOIN departamento ON profesor.id_departamento = departamento.id
+LEFT JOIN asignatura ON profesor.id_profesor = asignatura.id_profesor
+LEFT JOIN grado ON grado.id = asignatura.id_grado
+WHERE grado.nombre = 'Grado en Ingeniería Informática (Plan 2015)';
 
 /* 9. Return a list of all students who have enrolled in a subject during the 2018/2019 school year
 	Retorna un llistat amb tots els alumnes que s'han matriculat en alguna assignatura durant el curs escolar 2018/2019. */
@@ -153,12 +156,20 @@ GROUP BY grado.nombre
 HAVING COUNT(asignatura.id) > 40
 ORDER BY COUNT(asignatura.id) DESC;
 
+/* 25. Returns all data for the youngest student.
+	Retorna totes les dades de l'alumne/a més jove. */
+SELECT *
+FROM persona
+WHERE persona.tipo = 'alumno'
+ORDER BY persona.fecha_nacimiento DESC
+LIMIT 1;
+
 /*
 Consultes resum:
 
 Retorna un llistat que mostri el nom dels graus i la suma del nombre total de crèdits que hi ha per a cada tipus d'assignatura. El resultat ha de tenir tres columnes: nom del grau, tipus d'assignatura i la suma dels crèdits de totes les assignatures que hi ha d'aquest tipus.
 Retorna un llistat que mostri quants alumnes s'han matriculat d'alguna assignatura en cadascun dels cursos escolars. El resultat haurà de mostrar dues columnes, una columna amb l'any d'inici del curs escolar i una altra amb el nombre d'alumnes matriculats.
 Retorna un llistat amb el nombre d'assignatures que imparteix cada professor/a. El llistat ha de tenir en compte aquells professors/es que no imparteixen cap assignatura. El resultat mostrarà cinc columnes: id, nom, primer cognom, segon cognom i nombre d'assignatures. El resultat estarà ordenat de major a menor pel nombre d'assignatures.
-Retorna totes les dades de l'alumne/a més jove.
+
 Retorna un llistat amb els professors/es que tenen un departament associat i que no imparteixen cap assignatura.
 */
