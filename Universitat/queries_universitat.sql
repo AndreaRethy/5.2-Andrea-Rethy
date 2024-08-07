@@ -73,10 +73,18 @@ LEFT JOIN departamento ON profesor.id_departamento = departamento.id
 LEFT JOIN persona ON profesor.id_profesor = persona.id
 ORDER BY departamento.nombre ASC, persona.apellido1 ASC, persona.apellido2 ASC, persona.nombre ASC;
 
+/* 11. Return a list of professors who are not associated with a department.
+	Retorna un llistat amb els professors/es que no estan associats a un departament. */
+SELECT departamento.nombre, persona.apellido1, persona.apellido2, persona.nombre
+FROM profesor
+LEFT JOIN departamento ON profesor.id_departamento = departamento.id
+LEFT JOIN persona ON profesor.id_profesor = persona.id
+WHERE profesor.id_departamento IS NULL
+ORDER BY departamento.nombre ASC, persona.apellido1 ASC, persona.apellido2 ASC, persona.nombre ASC;
+
 /*
 Resol les 6 següents consultes utilitzant les clàusules LEFT JOIN i RIGHT JOIN.
 
-Retorna un llistat amb els professors/es que no estan associats a un departament.
 Retorna un llistat amb els departaments que no tenen professors/es associats.
 Retorna un llistat amb els professors/es que no imparteixen cap assignatura.
 Retorna un llistat amb les assignatures que no tenen un professor/a assignat.
