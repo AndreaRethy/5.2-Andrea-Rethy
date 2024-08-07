@@ -97,11 +97,25 @@ LEFT JOIN asignatura ON profesor.id_profesor = asignatura.id_profesor
 LEFT JOIN persona ON profesor.id_profesor = persona.id
 WHERE asignatura.nombre IS NULL;
 
+/* 14. Return a list of subjects that do not have an assigned teacher.
+	Retorna un llistat amb les assignatures que no tenen un professor/a assignat. */
+SELECT asignatura.*
+FROM asignatura
+LEFT JOIN profesor ON asignatura.id_profesor = profesor.id_profesor
+WHERE asignatura.id_profesor IS NULL;
+
+/* 15. Return a list of all departments that have not taught subjects in any school year.
+	Retorna un llistat amb tots els departaments que no han impartit assignatures en cap curs escolar. */
+SELECT departamento.*
+FROM profesor
+RIGHT JOIN asignatura ON profesor.id_profesor = asignatura.id_profesor
+RIGHT JOIN departamento ON profesor.id_departamento = departamento.id
+WHERE asignatura.nombre IS NULL; 
+
 /*
 Resol les 6 següents consultes utilitzant les clàusules LEFT JOIN i RIGHT JOIN.
 
-Retorna un llistat amb les assignatures que no tenen un professor/a assignat.
-Retorna un llistat amb tots els departaments que no han impartit assignatures en cap curs escolar.
+
 
 
 Consultes resum:
